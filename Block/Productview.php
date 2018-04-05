@@ -6,12 +6,11 @@ class Productview extends \Magento\Framework\View\Element\Template
     public function __construct(
         \Tagalys\Sync\Helper\Configuration $tagalysConfiguration,
         \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Registry $registry
     )
     {
         $this->tagalysConfiguration = $tagalysConfiguration;
-        $this->storeManager = $storeManager;
+        $this->storeManager = $context->getStoreManager();
         $this->registry = $registry;
         parent::__construct($context);
     }

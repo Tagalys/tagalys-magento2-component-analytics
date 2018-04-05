@@ -7,14 +7,13 @@ class Track extends \Magento\Framework\View\Element\Template
         \Tagalys\Analytics\CookieManager $cookieManager,
         \Tagalys\Sync\Helper\Configuration $tagalysConfiguration,
         \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Url $frontUrlHelper,
         \Magento\Framework\Registry $registry
     )
     {
         $this->cookieManager = $cookieManager;
         $this->tagalysConfiguration = $tagalysConfiguration;
-        $this->storeManager = $storeManager;
+        $this->storeManager = $context->getStoreManager();
         $this->registry = $registry;
         $this->frontUrlHelper = $frontUrlHelper;
         parent::__construct($context);
