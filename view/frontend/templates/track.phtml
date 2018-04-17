@@ -4,20 +4,20 @@
     ?>
     <?php if ($analyticsEvent != false): ?>
         <script>
-            require(['jquery', 'jquery/ui'], function($){
+            require(['jquery', 'jquery/ui'], function(jQuery){
                 try {
-                    $(document).on('tagalys:ready', function() {
+                    jQuery(document).on('tagalys:ready', function() {
                         var track = true;
                         <?php if ($analyticsEvent[2] == 'buy'): ?>
-                            var last_tracked_order_id = $.fn.tagalys_analytics.getCookie('__ta_last_order_id');
+                            var last_tracked_order_id = jQuery.fn.tagalys_analytics.getCookie('__ta_last_order_id');
                             if (last_tracked_order_id == '<?php echo $analyticsEvent[4] ?>') {
                                 track = false;
                             } else {
-                                $.fn.tagalys_analytics.setCookie('__ta_last_order_id', '<?php echo $analyticsEvent[4] ?>', 24*60*60*1000);
+                                jQuery.fn.tagalys_analytics.setCookie('__ta_last_order_id', '<?php echo $analyticsEvent[4] ?>', 24*60*60*1000);
                             }
                         <?php endif; ?>
                         if (track) {
-                            $.ajax({
+                            jQuery.ajax({
                                 url: "<?php echo $this->getProductDetailsUrl(); ?>",
                                 data: { event_json: '<?php echo json_encode($analyticsEvent) ?>' },
                                 dataType: 'json',
@@ -26,9 +26,9 @@
                                 success: function(data, textStatus, jqXHR) {
                                     for (var i = 0; i < this[3].length; i++) {
                                         if (this[2] == 'buy') {
-                                            $.fn.tagalys_analytics.track_event(this[1], $.extend({ action: this[2], order_id: this[4] }, data[i]));
+                                            jQuery.fn.tagalys_analytics.track_event(this[1], jQuery.extend({ action: this[2], order_id: this[4] }, data[i]));
                                         } else {
-                                            $.fn.tagalys_analytics.track_event(this[1], $.extend({ action: this[2] }, data[i]));
+                                            jQuery.fn.tagalys_analytics.track_event(this[1], jQuery.extend({ action: this[2] }, data[i]));
                                         }
                                     }
                                 }
@@ -43,13 +43,13 @@
         </script>
     <?php endif; ?>
     <script>
-        require(['jquery', 'jquery/ui'], function($){
+        require(['jquery', 'jquery/ui'], function(jQuery){
             try {
-                $(document).on('tagalys:ready', function() {
-                    var logged_in_user_id = $.fn.tagalys_analytics.getCookie('__ta_logged_in');
+                jQuery(document).on('tagalys:ready', function() {
+                    var logged_in_user_id = jQuery.fn.tagalys_analytics.getCookie('__ta_logged_in');
                     if(logged_in_user_id != ""){
-                        $.fn.tagalys_analytics.track_user(logged_in_user_id); 
-                        $.fn.tagalys_analytics.deleteCookie('__ta_logged_in');
+                        jQuery.fn.tagalys_analytics.track_user(logged_in_user_id); 
+                        jQuery.fn.tagalys_analytics.deleteCookie('__ta_logged_in');
                     }
                 });
             }

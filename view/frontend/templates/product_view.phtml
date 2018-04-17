@@ -15,11 +15,11 @@
     ?>
     <?php if ($eventDetails != false): ?>
         <script>
-            require(['jquery', 'jquery/ui'], function($){ 
+            require(['jquery', 'jquery/ui'], function(jQuery){ 
                 try {
-                    $(document).on('tagalys:ready', function() {
+                    jQuery(document).on('tagalys:ready', function() {
                         try {
-                            $.fn.tagalys_analytics.track_event('product_action', <?php echo json_encode($eventDetails) ?>);
+                            jQuery.fn.tagalys_analytics.track_event('product_action', <?php echo json_encode($eventDetails) ?>);
                         }
                         catch(err) {
                             
