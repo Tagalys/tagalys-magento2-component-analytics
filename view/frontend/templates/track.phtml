@@ -22,6 +22,7 @@
                                 data: { event_json: '<?php echo json_encode($analyticsEvent) ?>' },
                                 dataType: 'json',
                                 method: 'POST',
+                                type: 'POST',
                                 context: <?php echo json_encode($analyticsEvent) ?>,
                                 success: function(data, textStatus, jqXHR) {
                                     for (var i = 0; i < this[3].length; i++) {
