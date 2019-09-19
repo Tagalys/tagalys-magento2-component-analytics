@@ -73,7 +73,7 @@ class Details extends \Magento\Framework\App\Action\Action implements CsrfAwareA
                 return $el['attribute_code'];
             }, $mainProduct->getTypeInstance(true)->getConfigurableAttributesAsArray($mainProduct));
             $simpleProduct = $this->productFactory->create()->load($details[2]);
-            $simpleProductAttributes = $this->tagalysProduct->getProductTags($simpleProduct, $this->storeManager->getStore()->getId());
+            $simpleProductAttributes = $this->tagalysProduct->getDirectProductTags($simpleProduct, $this->storeManager->getStore()->getId());
             $configurableSimpleProductAttributes = array();
             for ($i = 0; $i < count($simpleProductAttributes); $i++) {
                 if (in_array($simpleProductAttributes[$i]['tag_set']['id'], $configurableAttributes)) {
