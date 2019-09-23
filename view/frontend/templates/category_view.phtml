@@ -1,11 +1,11 @@
 <?php if($this->isTagalysEnabled()){ ?> 
 <script>
-    <? 
+    <?php
         $thisCategory = $this->getCurrentCategory();
         $isTagalysCreated = $this->isTagalysCreated();
         $eventDetails = [
             'pl_type' => $isTagalysCreated ? 'page-tagalys' : 'page-platform',
-            'pl_details' => ['page_id' => $thisCategory->getId(), 'title' => $thisCategory->getName(), 'pl_total' => null],
+            'pl_details' => ['page_id' => $thisCategory->getId(), 'title' => $this->pageTitle->getShort(), 'pl_total' => null],
             'pl_products' => []
         ];
     ?>
@@ -19,4 +19,4 @@
         });
     });
 </script>
-<? } ?>
+<?php } ?>

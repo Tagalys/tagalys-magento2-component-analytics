@@ -8,7 +8,8 @@ class Categoryview extends \Magento\Framework\View\Element\Template
         \Tagalys\Sync\Helper\Configuration $tagalysConfiguration,
         \Tagalys\Sync\Helper\Category $tagalysCategory,
         \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Framework\Registry $registry
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\View\Page\Title $pageTitle
     )
     {
         $this->tagalysConfiguration = $tagalysConfiguration;
@@ -16,6 +17,7 @@ class Categoryview extends \Magento\Framework\View\Element\Template
         $this->registry = $registry;
         $this->tagalysCategory = $tagalysCategory;
         $this->_category = $this->registry->registry('current_category');
+        $this->pageTitle = $pageTitle;
         parent::__construct($context);
     }
 
