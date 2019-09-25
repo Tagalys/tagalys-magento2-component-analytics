@@ -5,16 +5,19 @@
         $isTagalysCreated = $this->isTagalysCreated();
         $eventDetails = [
             'pl_type' => $isTagalysCreated ? 'page-tagalys' : 'page-platform',
-            'pl_details' => ['page_id' => $thisCategory->getId(), 'title' => $this->pageTitle->getShort(), 'pl_total' => null],
+            'pl_details' => ['page_id' => $thisCategory->getId(), 'title' => html_entity_decode($this->pageTitle->getShort())],
+            'pl_total' => $thisCategory->getProductCount(),
             'pl_products' => []
         ];
     ?>
     require(['jquery', 'jquery/ui'], function(jQuery){ 
         jQuery(document).on('tagalys:ready', function() {
             try {
-                jQuery.fn.tagalys_analytics.track_event('product_list', <?php echo json_encode($eventDetails) ?>);
-            } catch(ignored) {
-                console.error(ignored)
+                if (typeof(__tagalysRendered) == 'undefined' || !__tagalysRendered) {
+                    jQuery.fn.tagalys_analytics.track_event('product_list', <?php echo json_encode($eventDetails) ?>);
+                }
+            } catch(error) {
+                console.error(error)
             }
         });
     });
